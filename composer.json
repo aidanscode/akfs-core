@@ -1,0 +1,30 @@
+{
+    "name": "aidanscode/carnival",
+    "description": "Core systems for AKFS",
+    "type": "library",
+    "license": "UNLICENSED",
+    "authors": [
+        {
+            "name": "Aidan",
+            "email": "amurphey@tutanota.com"
+        },
+        {
+            "name": "Kyle",
+            "email": "kyleevangelisto@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Carnival\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tst/"
+        }
+    }
+}
