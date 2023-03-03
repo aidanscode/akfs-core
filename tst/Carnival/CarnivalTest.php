@@ -19,9 +19,7 @@ class CarnivalTest extends TestCase {
             try {
                 Mockery::close();
             } catch (InvalidCountException $e) {
-                if (! Str::contains($e->getMethodName(), ['doWrite', 'askQuestion'])) {
-                    throw $e;
-                }
+                throw $e;
             }
         }
     }
