@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Hooks;
+namespace Carnival\Hooks;
 
-use Src\Hooks\Event;
+use Carnival\Hooks\Event;
 use Illuminate\Support\Collection;
 
 class Hook {
@@ -28,7 +28,9 @@ class Hook {
     /**
      * Functions for testing
      */
-    function count () : int {
-        return $this->hooks->count();
+    function count (string $eventClass) : int {
+        return $this->hooks->get($eventClass) 
+            ? $this->hooks->get($eventClass)->count() 
+            : 0;
     }
 }

@@ -1,13 +1,12 @@
 <?php
 
-namespace Src\Providers;
+namespace Carnival\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Src\Hooks\Hook as HookSystem;
+use Carnival\Hooks\Hook;
 
 class HookServiceProvider extends ServiceProvider
 {
-
     /**
      * Register services.
      *
@@ -15,7 +14,12 @@ class HookServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /**
+         * Bind Hook Service
+         */
+        $this->app->bind('hook', function () {
+            return new Hook;
+        });
     }
 
     /**
@@ -25,11 +29,6 @@ class HookServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /**
-         * Bind Hook Service
-         */
-        $this->app->bind(Hook::class, function () {
-            return new HookSystem;
-        });
+        
     }
 }

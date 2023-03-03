@@ -1,5 +1,5 @@
 <?php
 
-namespace Src\Hooks;
+namespace Carnival\Hooks;
 
 interface Event { }
