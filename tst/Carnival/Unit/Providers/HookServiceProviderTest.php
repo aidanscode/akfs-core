@@ -9,7 +9,7 @@ use Tests\Carnival\CarnivalTest;
 
 class HookServiceProviderTest extends CarnivalTest {
 
-    public function testHookServiceProviderCanRegisterHookLibraryFacade () {
+    public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
         $hookServiceProvider = new HookServiceProvider($application);
         $application->shouldReceive('bind');

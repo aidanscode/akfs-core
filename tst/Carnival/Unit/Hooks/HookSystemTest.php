@@ -11,19 +11,19 @@ class HookSystemTest extends CarnivalTest {
     protected $hookSystem;
     protected $exampleHook;
 
-    public function setUp () : void {
+    public function setUp() : void {
         parent::setUp();
 
         $this->hookSystem = new Hook;
         $this->exampleHook = new ExampleHook("Hello World!");
     }
 
-    public function testCanAddHookToHookList () {
+    public function testCanAddHookToHookList() {
         $this->addExampleHookToHookList();
         $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
     }
 
-    public function testCanRemoveHookFromHookList () {
+    public function testCanRemoveHookFromHookList() {
         $this->addExampleHookToHookList();
         $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
         
@@ -31,7 +31,7 @@ class HookSystemTest extends CarnivalTest {
         $this->assertEquals(0, $this->hookSystem->count(ExampleHook::class));
     }
 
-    public function testCanExecuteHooksInHookList () {
+    public function testCanExecuteHooksInHookList() {
         $this->addExampleHookToHookList();
         $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
 
@@ -42,7 +42,7 @@ class HookSystemTest extends CarnivalTest {
         $this->assertEquals("Goodbye World!", $this->exampleHook->getText());
     }
 
-    public function testCanExecuteMultipleHooksForTheSameEvent () {
+    public function testCanExecuteMultipleHooksForTheSameEvent() {
         $this->addMultipleHooksToHookList();
         $this->assertEquals(2, $this->hookSystem->count(ExampleHook::class));
 
@@ -53,13 +53,13 @@ class HookSystemTest extends CarnivalTest {
         $this->assertEquals("Goodnight World!", $this->exampleHook->getText());
     }
 
-    private function addExampleHookToHookList () : void {
+    private function addExampleHookToHookList() : void {
         $this->hookSystem->add(ExampleHook::class, function () {
             $this->exampleHook->setText('Goodbye World!');
         });
     }
 
-    private function addMultipleHooksToHookList () : void  {
+    private function addMultipleHooksToHookList() : void  {
         $this->hookSystem->add(ExampleHook::class, function () {
             $this->exampleHook->setText('Goodbye World!');
         });
