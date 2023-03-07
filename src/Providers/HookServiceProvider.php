@@ -3,7 +3,7 @@
 namespace Carnival\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Carnival\Hooks\Hook;
+use Carnival\Hooks\HookSystem;
 
 class HookServiceProvider extends ServiceProvider
 {
@@ -17,8 +17,8 @@ class HookServiceProvider extends ServiceProvider
         /**
          * Bind Hook Service
          */
-        $this->app->bind('hook', function () {
-            return new Hook;
+        $this->app->bind('hooks', function () {
+            return new HookSystem;
         });
     }
 

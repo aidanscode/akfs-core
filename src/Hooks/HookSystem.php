@@ -2,10 +2,10 @@
 
 namespace Carnival\Hooks;
 
-use Carnival\Hooks\Event;
+use Carnival\Hooks\Topic;
 use Illuminate\Support\Collection;
 
-class Hook {
+class HookSystem {
 
     protected Collection $hooks;
 
@@ -21,16 +21,7 @@ class Hook {
         $this->hooks->forget($eventClass);
     }
     
-    function execute(Event $event) : void {
+    function execute(Topic $event) : void {
         data_get($this->hooks, get_class($event), collect())->each(fn ($callback) => $callback($event));
-    }
-
-    /**
-     * Functions for testing
-     */
-    function count(string $eventClass) : int {
-        return $this->hooks->get($eventClass) 
-            ? $this->hooks->get($eventClass)->count() 
-            : 0;
     }
 }

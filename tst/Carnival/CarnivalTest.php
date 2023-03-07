@@ -14,8 +14,6 @@ class CarnivalTest extends TestCase {
             $this->addToAssertionCount($container->mockery_getExpectationCount());
         }
 
-        try {
-            Mockery::close();
-        } catch (InvalidCountException $e) {}
+        Mockery::close();
     }
 }

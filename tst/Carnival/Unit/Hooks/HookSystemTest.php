@@ -2,70 +2,67 @@
 
 namespace Tests\Unit\Hooks;
 
-use Carnival\Hooks\Hook;
+use Carnival\Hooks\HookSystem;
 use Tests\Carnival\CarnivalTest;
-use Tests\Carnival\Unit\Data\Hooks\ExampleHook;
+use Tests\Carnival\Unit\Data\Topics\ExampleTopic;
 
 class HookSystemTest extends CarnivalTest {
 
+    const EXAMPLE_NUMBER = 0;
+
     protected $hookSystem;
-    protected $exampleHook;
+    protected $exampleTopic;
 
     public function setUp() : void {
         parent::setUp();
 
-        $this->hookSystem = new Hook;
-        $this->exampleHook = new ExampleHook("Hello World!");
+        $this->hookSystem = new HookSystem;
+        $this->exampleTopic = new ExampleTopic(self::EXAMPLE_NUMBER);
     }
 
-    public function testCanAddHookToHookList() {
-        $this->addExampleHookToHookList();
-        $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
+    public function testTopicInHookListWillBeExecuted() {
+        $this->addExampleTopicToHookList();
+        $this->hookSystem->execute($this->exampleTopic);
+        $this->assertEquals(1, $this->exampleTopic->getNumber());
     }
 
-    public function testCanRemoveHookFromHookList() {
-        $this->addExampleHookToHookList();
-        $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
-        
-        $this->hookSystem->remove(ExampleHook::class);
-        $this->assertEquals(0, $this->hookSystem->count(ExampleHook::class));
+    public function testTopicNotInHookListWillNotBeExecuted() {
+        $this->hookSystem->execute($this->exampleTopic);
+        $this->assertEquals(0, $this->exampleTopic->getNumber());
     }
 
-    public function testCanExecuteHooksInHookList() {
-        $this->addExampleHookToHookList();
-        $this->assertEquals(1, $this->hookSystem->count(ExampleHook::class));
-
-        $this->assertEquals("Hello World!", $this->exampleHook->getText());
-
-        $this->hookSystem->execute($this->exampleHook);
-
-        $this->assertEquals("Goodbye World!", $this->exampleHook->getText());
+    public function testTopicInHookListCanBeRemoved() {
+        $this->addExampleTopicToHookList();
+        $this->hookSystem->remove(ExampleTopic::class);
+        $this->hookSystem->execute($this->exampleTopic);
+        $this->assertEquals(0, $this->exampleTopic->getNumber());
     }
 
-    public function testCanExecuteMultipleHooksForTheSameEvent() {
-        $this->addMultipleHooksToHookList();
-        $this->assertEquals(2, $this->hookSystem->count(ExampleHook::class));
-
-        $this->assertEquals("Hello World!", $this->exampleHook->getText());
-
-        $this->hookSystem->execute($this->exampleHook);
-
-        $this->assertEquals("Goodnight World!", $this->exampleHook->getText());
+    public function testTopicNotInHookListCanNotBeRemoved() {
+        $this->hookSystem->remove(ExampleTopic::class);
+        $this->hookSystem->execute($this->exampleTopic);
+        $this->assertEquals(0, $this->exampleTopic->getNumber());
     }
 
-    private function addExampleHookToHookList() : void {
-        $this->hookSystem->add(ExampleHook::class, function () {
-            $this->exampleHook->setText('Goodbye World!');
+    public function testCanExecuteMultipleOfTheSameTopics() {
+        $this->addMultipleTopicsToHookList();
+        $this->hookSystem->execute($this->exampleTopic);
+        $this->assertEquals(3, $this->exampleTopic->getNumber());
+    }
+
+    private function addExampleTopicToHookList() : void {
+        $this->hookSystem->add(ExampleTopic::class, function () {
+            $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 1);
         });
     }
 
-    private function addMultipleHooksToHookList() : void  {
-        $this->hookSystem->add(ExampleHook::class, function () {
-            $this->exampleHook->setText('Goodbye World!');
+    private function addMultipleTopicsToHookList() : void  {
+        $this->hookSystem->add(ExampleTopic::class, function () {
+            $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 1);
         });
 
-        $this->hookSystem->add(ExampleHook::class, function () {
-            $this->exampleHook->setText('Goodnight World!');
+        $this->hookSystem->add(ExampleTopic::class, function () {
+            $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 2);
         });
     }
 }

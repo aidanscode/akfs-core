@@ -2,4 +2,4 @@
 
 namespace Carnival\Hooks;
 
-interface Event { }
+interface Topic { }
