@@ -5,7 +5,7 @@ namespace Carnival\Hooks;
 use Carnival\Hooks\Topic;
 use Illuminate\Support\Collection;
 
-class HookSystem {
+class HookManager {
 
     protected Collection $hooks;
 

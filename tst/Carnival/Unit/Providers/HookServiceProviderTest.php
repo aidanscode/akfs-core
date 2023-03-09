@@ -2,7 +2,7 @@
 
 namespace Tests\Carnival\Unit\Providers;
 
-use Carnival\Hooks\HookSystem;
+use Carnival\Hooks\HookManager;
 use Carnival\Providers\HookServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
 use Mockery;
@@ -13,7 +13,7 @@ class HookServiceProviderTest extends CarnivalTest {
     public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
         $hookServiceProvider = new HookServiceProvider($application);
-        $application->shouldReceive('bind')->with('hooks', Mockery::on(fn ($argument) => $argument() instanceof HookSystem ));
+        $application->shouldReceive('bind')->with('hooks', Mockery::on(fn ($argument) => $argument() instanceof HookManager ));
         $hookServiceProvider->register();
         $application->shouldHaveReceived('bind')->once();
     }

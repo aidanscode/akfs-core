@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Hooks;
 
-use Carnival\Hooks\HookSystem;
+use Carnival\Hooks\HookManager;
 use Tests\Carnival\CarnivalTest;
 use Tests\Carnival\Unit\Data\Topics\ExampleTopic;
 
-class HookSystemTest extends CarnivalTest {
+class HookManagerTest extends CarnivalTest {
 
     const EXAMPLE_NUMBER = 0;
 
@@ -16,7 +16,7 @@ class HookSystemTest extends CarnivalTest {
     public function setUp() : void {
         parent::setUp();
 
-        $this->hookSystem = new HookSystem;
+        $this->hookSystem = new HookManager;
         $this->exampleTopic = new ExampleTopic(self::EXAMPLE_NUMBER);
     }
 
