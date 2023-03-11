@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Carnival\Unit\Data\Topics;
+namespace Tests\Carnival\Data\Topics;
 
 use Carnival\Hooks\Topic;
 

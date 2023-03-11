@@ -8,7 +8,7 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tst/Carnival/Unit</directory>
+            <directory suffix="Test.php">./tst/Carnival/</directory>
         </testsuite>
     </testsuites>
     <coverage>

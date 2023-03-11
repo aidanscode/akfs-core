@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Unit\Hooks;
+namespace Tests\Hooks;
 
 use Carnival\Hooks\HookManager;
-use Tests\Carnival\CarnivalTest;
-use Tests\Carnival\Unit\Data\Topics\ExampleTopic;
+use Tests\Carnival\CarnivalTestCase;
+use Tests\Carnival\Data\Topics\ExampleTopic;
 
-class HookManagerTest extends CarnivalTest {
+class HookManagerTest extends CarnivalTestCase {
 
     const EXAMPLE_NUMBER = 0;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Carnival\Hooks\Facades;
+namespace Carnival\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

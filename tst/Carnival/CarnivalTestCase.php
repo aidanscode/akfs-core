@@ -3,10 +3,9 @@
 namespace Tests\Carnival;
 
 use Mockery;
-use Mockery\Exception\InvalidCountException;
 use PHPUnit\Framework\TestCase;
 
-class CarnivalTest extends TestCase {
+abstract class CarnivalTestCase extends TestCase {
     protected function tearDown() : void {
         parent::tearDown();
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Carnival\Unit\Providers;
+namespace Tests\Carnival\Providers;
 
 use Carnival\Hooks\HookManager;
 use Carnival\Providers\HookServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
 use Mockery;
-use Tests\Carnival\CarnivalTest;
+use Tests\Carnival\CarnivalTestCase;
 
-class HookServiceProviderTest extends CarnivalTest {
+class HookServiceProviderTest extends CarnivalTestCase {
 
     public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
