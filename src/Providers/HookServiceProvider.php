@@ -17,9 +17,7 @@ class HookServiceProvider extends ServiceProvider
         /**
          * Bind Hook Service
          */
-        $this->app->bind('hooks', function () {
-            return new HookManager;
-        });
+        $this->app->bind('hooks', fn() => new HookManager);
     }
 
     /**
