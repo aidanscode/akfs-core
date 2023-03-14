@@ -13,7 +13,7 @@ class HookManager {
         $this->hooks = collect();
     }
 
-    function add(string $eventClass, callable $callback) : void {
+    function register(string $eventClass, callable $callback) : void {
         data_set($this->hooks, $eventClass, data_get($this->hooks, $eventClass, collect())->push($callback));
     }
         

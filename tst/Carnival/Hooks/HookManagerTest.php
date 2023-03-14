@@ -38,17 +38,17 @@ class HookManagerTest extends CarnivalTestCase {
     }
 
     private function addExampleTopicToHookList() : void {
-        $this->hookSystem->add(ExampleTopic::class, function () {
+        $this->hookSystem->register(ExampleTopic::class, function () {
             $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 1);
         });
     }
 
     private function addMultipleTopicsToHookList() : void  {
-        $this->hookSystem->add(ExampleTopic::class, function () {
+        $this->hookSystem->register(ExampleTopic::class, function () {
             $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 1);
         });
 
-        $this->hookSystem->add(ExampleTopic::class, function () {
+        $this->hookSystem->register(ExampleTopic::class, function () {
             $this->exampleTopic->setNumber($this->exampleTopic->getNumber() + 2);
         });
     }
