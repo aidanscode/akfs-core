@@ -13,9 +13,11 @@ class HookServiceProviderTest extends CarnivalTestCase {
     public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
         $hookServiceProvider = new HookServiceProvider($application);
-        $application->shouldReceive('bind')->with('hooks', Mockery::on(fn ($argument) => $argument() instanceof HookManager ));
+        $application->shouldReceive('bind')->with(
+            'hooks', 
+            Mockery::on(fn ($argument) => is_callable($argument) && $argument() instanceof HookManager )
+        )->once();
         $hookServiceProvider->register();
-        $application->shouldHaveReceived('bind')->once();
     }
 
 }

@@ -5,28 +5,9 @@ namespace Carnival\Providers;
 use Illuminate\Support\ServiceProvider;
 use Carnival\Hooks\HookManager;
 
-class HookServiceProvider extends ServiceProvider
-{
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        /**
-         * Bind Hook Service
-         */
+class HookServiceProvider extends ServiceProvider {
+    
+    public function register() {
         $this->app->bind('hooks', fn() => new HookManager);
-    }
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        
     }
 }

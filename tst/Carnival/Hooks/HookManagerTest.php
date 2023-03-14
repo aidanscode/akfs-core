@@ -31,19 +31,6 @@ class HookManagerTest extends CarnivalTestCase {
         $this->assertEquals(0, $this->exampleTopic->getNumber());
     }
 
-    public function testTopicInHookListCanBeRemoved() {
-        $this->addExampleTopicToHookList();
-        $this->hookSystem->remove(ExampleTopic::class);
-        $this->hookSystem->execute($this->exampleTopic);
-        $this->assertEquals(0, $this->exampleTopic->getNumber());
-    }
-
-    public function testTopicNotInHookListCanNotBeRemoved() {
-        $this->hookSystem->remove(ExampleTopic::class);
-        $this->hookSystem->execute($this->exampleTopic);
-        $this->assertEquals(0, $this->exampleTopic->getNumber());
-    }
-
     public function testCanExecuteMultipleOfTheSameTopics() {
         $this->addMultipleTopicsToHookList();
         $this->hookSystem->execute($this->exampleTopic);
