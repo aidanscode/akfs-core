@@ -13,11 +13,15 @@ class ThemeManager {
         $this->themes = collect();
     }
 
-    function register(Theme $theme) {
-        $this->themes->push($theme);
+    function register(Theme $theme) : void {
+        $this->themes->put(get_class($theme), $theme);
     }
 
-    function get() : Collection {
+    function get(string $themeClass) : Theme {
+        return $this->themes->get($themeClass);
+    }
+
+    function getAll() : Collection {
         return $this->themes->values();
     }
 }
