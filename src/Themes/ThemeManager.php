@@ -6,7 +6,6 @@ use Carnival\Themes\Theme;
 use Illuminate\Support\Collection;
 
 class ThemeManager {
-
     protected Collection $themes;
 
     public function __construct() {
@@ -17,7 +16,7 @@ class ThemeManager {
         $this->themes->put(get_class($theme), $theme);
     }
 
-    function get(string $themeClass) : Theme {
+    function get(string $themeClass) : ?Theme {
         return $this->themes->get($themeClass);
     }
 

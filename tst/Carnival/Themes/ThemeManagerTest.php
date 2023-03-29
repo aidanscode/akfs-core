@@ -8,7 +8,6 @@ use Mockery;
 use Tests\Carnival\CarnivalTestCase;
 
 class ThemeManagerTest extends CarnivalTestCase {
-
     protected $themeManager;
     protected $exampleTheme;
 

@@ -9,7 +9,6 @@ use Mockery;
 use Tests\Carnival\CarnivalTestCase;
 
 class ThemeServiceProviderTest extends CarnivalTestCase {
-    
     public function testThemeServiceProviderCanRegisterThemeManagerFacade() {
         $application = Mockery::mock(Application::class);
         $themeServiceProvider = new ThemeServiceProvider($application);
