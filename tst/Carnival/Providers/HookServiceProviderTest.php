@@ -9,7 +9,6 @@ use Mockery;
 use Tests\Carnival\CarnivalTestCase;
 
 class HookServiceProviderTest extends CarnivalTestCase {
-
     public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
         $hookServiceProvider = new HookServiceProvider($application);
@@ -19,5 +18,4 @@ class HookServiceProviderTest extends CarnivalTestCase {
         )->once();
         $hookServiceProvider->register();
     }
-
 }

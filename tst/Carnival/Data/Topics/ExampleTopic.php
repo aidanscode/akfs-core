@@ -5,7 +5,6 @@ namespace Tests\Carnival\Data\Topics;
 use Carnival\Hooks\Topic;
 
 class ExampleTopic implements Topic {
-
     protected $number;
 
     public function __construct(int $number) {
