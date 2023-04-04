@@ -2,19 +2,12 @@
 
 namespace Carnival\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Carnival\Models\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model {
-    
-    use HasFactory;
-    use SoftDeletes;
-
     protected $fillable = [
         'external_id',
         'username',
@@ -25,10 +18,6 @@ class User extends Model {
     public static function boot() {
         parent::boot();
     }
-
-    /**
-     * Relationships
-     */
 
     public function posts() : HasMany {
         return $this->hasMany(Post::class);
@@ -42,8 +31,8 @@ class User extends Model {
         return $this->hasOne(UserType::class);
     }
 
+    //can a user belong to multiple orgs/companies/etc, should we have a bridge table/additional model
     public function org() : BelongsTo {
         return $this->belongsTo(Org::class);
     }
-
 }
