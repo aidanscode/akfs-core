@@ -3,29 +3,25 @@
 namespace Carnival\Models;
 
 use Carnival\Models\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model {
+class Forum extends Model {
     protected $fillable = [
-        'rank_id',
-        'username',
-        'email',
-        'timezone',
+        'name',
+        'creator_id',
+        'category_id'
     ];
 
     public static function boot() {
         parent::boot();
     }
 
-    public function posts() : HasMany {
-        return $this->hasMany(Post::class);
+    public function category() : BelongsTo {
+        return $this->belongsTo(Category::class);
     }
 
     public function threads() : HasMany {
         return $this->hasMany(Thread::class);
-    }
-
-    public function ranks() : HasMany {
-        return $this->hasMany(Rank::class);
     }
 }

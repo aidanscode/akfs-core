@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model {
     protected $fillable = [
-        'user_id', // who created the thread? user_id/creating_user_id/creator_id/etc.
+        'creator_id',
         'name',
-        'category', //should category/topic be its own model aka, category_id, topic_id where the categories have an id, name etc.
-        //what else is exclusive to a thread
+        'forum_id',
+        'category_id'
     ];
 
     public static function boot() {
@@ -22,8 +22,11 @@ class Thread extends Model {
         return $this->hasMany(Post::class);
     }
 
-    //Do we want to keep track of the user who created a thread
     public function user() : BelongsTo {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'creator_id', 'id');
+    }
+
+    public function forum() : BelongsTo {
+        return $this->belongsTo(Forum::class);
     }
 }
