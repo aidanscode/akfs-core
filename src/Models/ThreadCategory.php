@@ -3,21 +3,16 @@
 namespace Carnival\Models;
 
 use Carnival\Models\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Forum extends Model {
+class ThreadCategory extends Model {
     protected $fillable = [
         'name',
-        'category_id'
+        'is_user_created'
     ];
 
     public static function boot() {
         parent::boot();
-    }
-
-    public function category() : BelongsTo {
-        return $this->belongsTo(Category::class);
     }
 
     public function threads() : HasMany {

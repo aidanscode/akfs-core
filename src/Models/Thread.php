@@ -5,13 +5,14 @@ namespace Carnival\Models;
 use Carnival\Models\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Thread extends Model {
     protected $fillable = [
         'creator_id',
         'name',
         'forum_id',
-        'category_id'
+        'thread_category_id'
     ];
 
     public static function boot() {
@@ -28,5 +29,9 @@ class Thread extends Model {
 
     public function forum() : BelongsTo {
         return $this->belongsTo(Forum::class);
+    }
+
+    public function threadCategory() : HasOne {
+        return $this->hasOne(ThreadCategory::class);
     }
 }

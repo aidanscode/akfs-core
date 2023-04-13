@@ -3,6 +3,7 @@
 namespace Carnival\Models;
 
 use Carnival\Models\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model {
@@ -25,7 +26,7 @@ class User extends Model {
         return $this->hasMany(Thread::class);
     }
 
-    public function ranks() : HasMany {
-        return $this->hasMany(Rank::class);
+    public function ranks() : BelongsToMany {
+        return $this->belongsToMany(Rank::class)->using(UserRank::class);
     }
 }
