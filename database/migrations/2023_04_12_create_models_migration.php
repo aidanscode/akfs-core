@@ -45,7 +45,7 @@ return new class extends Migration {
             $table->foreignId('creator_id');
             $table->foreignId('forum_id')->constrained();
             $table->foreignId('thread_category_id')->constrained();
-            $table->string('name');
+            $table->string('title');
             $table->timestamps();
             $table->softDeletes();
 
