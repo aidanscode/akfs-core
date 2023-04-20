@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->foreignId('author_id');
             $table->foreignId('thread_id')->constrained();
             $table->string('title');
-            $table->longText('body')->nullable();
+            $table->longText('body');
             $table->timestamps();
             $table->softDeletes();
 
