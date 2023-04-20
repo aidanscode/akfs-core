@@ -2,19 +2,19 @@
 
 namespace Tests\Carnival\Providers;
 
-use Carnival\Hooks\HookManager;
-use Carnival\Providers\HookServiceProvider;
+use Carnival\Language\LanguageManager;
+use Carnival\Providers\LanguageServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
 use Mockery;
 use Tests\Carnival\CarnivalTestCase;
 
-class HookServiceProviderTest extends CarnivalTestCase {
+class LanguageServiceProviderTest extends CarnivalTestCase {
     public function testHookServiceProviderCanRegisterHookLibraryFacade() {
         $application = Mockery::mock(Application::class);
-        $hookServiceProvider = new HookServiceProvider($application);
+        $hookServiceProvider = new LanguageServiceProvider($application);
         $application->shouldReceive('bind')->with(
-            'hooks', 
-            Mockery::on(fn ($argument) => is_callable($argument) && $argument() instanceof HookManager )
+            'languages', 
+            Mockery::on(fn ($argument) => is_callable($argument) && $argument() instanceof LanguageManager)
         )->once();
         $hookServiceProvider->register();
     }
