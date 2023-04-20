@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Thread extends Model {
     protected $fillable = [
         'creator_id',
-        'name',
+        'title',
         'forum_id',
         'thread_category_id'
     ];
