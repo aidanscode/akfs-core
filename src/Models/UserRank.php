@@ -2,9 +2,9 @@
 
 namespace Carnival\Models;
 
-use Carnival\Models\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserRank extends Model {
+class UserRank extends Pivot {
     public $table = 'user_ranks';
 
     protected $fillable = [
