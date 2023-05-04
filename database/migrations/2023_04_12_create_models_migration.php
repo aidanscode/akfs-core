@@ -6,6 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up() {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('timezone');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,6 +28,27 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('thread_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('is_user_created');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+
+        Schema::create('threads', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('creator_id');
+            $table->foreignId('forum_id')->constrained();
+            $table->foreignId('thread_category_id')->constrained();
+            $table->string('title');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('creator_id')->references('id')->on('users');
         });
 
         Schema::create('posts', function (Blueprint $table) {
@@ -36,35 +66,6 @@ return new class extends Migration {
         Schema::create('ranks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('threads', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('creator_id');
-            $table->foreignId('forum_id')->constrained();
-            $table->foreignId('thread_category_id')->constrained();
-            $table->string('title');
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('creator_id')->references('id')->on('users');
-        });
-
-        Schema::create('thread_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->boolean('is_user_created');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->string('timezone');
             $table->timestamps();
             $table->softDeletes();
         });
